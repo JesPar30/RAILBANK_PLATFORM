@@ -1,0 +1,30 @@
+<div class="page-content pl-5 pr-5 pt-2" id="content">
+    {{>toggMenu}}
+<div class="row">
+  <div class="col-md-4 mx-auto">
+    <div class="card mt-4 text-center">
+      <div class="card-header">
+        <h1 class="h4">
+          Account Login
+        </h1>
+      </div>
+      <img class="rounded-circle mx-auto logo" src="../images/PNG-RAILCOM.png"  width="256" alt="Logo">
+      <div class="card-body">
+        <form action="/user/login" method="POST">
+          <div class="form-group">
+            <input type="email" class="form-control" name="EMAIL" placeholder="Email" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="CONTRASENA" placeholder="Password">
+          </div>
+          <button class="btn btn-primary btn-block">
+            Signin 
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>

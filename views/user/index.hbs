@@ -1,0 +1,29 @@
+<div class="page-content pl-5 pr-5 pt-2" id="content">
+{{>toggMenu}}
+        <div class="table-responsive">
+            <table class="table table-hover table-striped table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>DNI</th>
+                        <th>CUIT</th>
+                        <th>CARGO</th>
+                        <th>EMAIL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each user}}
+                    <tr>
+                        <td>{{ this.NOMBRE }} <a href="/user/show/{{ this._id }}"><i class="fas fa-user-edit"></i></a></td>
+                        <td>{{ this.DNI }}</td>
+                        <td>{{ this.CUIT }}</td>
+                        <td>{{ this.CARGO }}</td>
+                        <td>{{ this.EMAIL }}</td>
+                    </tr>
+                    {{else}}
+                    <h3>No hay usuarios cargados. <a href="/user/create">¡Cargá tu primer usuario!</a></h3>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+</div>

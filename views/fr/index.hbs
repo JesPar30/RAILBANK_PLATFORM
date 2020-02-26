@@ -1,0 +1,61 @@
+<div class="page-content pl-5 pr-5 pt-2" id="content">
+    {{>toggMenu}}
+
+        <table class="table table-responsive table-hover table-striped table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>RAZON_SOCIAL</th>
+                    <th>NOMBRE_DE_FANTASIA</th>
+                    <th>CUIT</th>
+                    <th>TELEFONO</th>
+                    <th>CELULAR</th>
+                    <th>EMAIL</th>
+                    <th>DOMICILIO</th>
+                    <th>LOCALIDAD</th>
+                    <th>BANCO</th>
+                    <th>N°_CUENTA</th>
+                    <th>CBU</th>
+                    <th>RUBRO_VISA</th>
+                    <th>N°_IIBB</th>
+                    <th>FIRMANTE</th>
+                    <th>DNI</th>
+                    <th>CUIL</th>
+                    <th>TELEFONO_FIRMANTE</th>
+                    <th>EMAIL_FIRMANTE</th>
+                    <th>NACIONALIDAD_FIRMANTE</th>
+                    <th>SEXO_FIRMANTE</th>
+                    <th>DOMICILIO_FIRMANTE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each fr}}
+                <tr>
+                    <td>{{ this.RAZONSOCIAL }}<a href="/fr/show/{{ this._id }}"><i class="fas fa-user-edit"></i></a><a href="/fr/genAmex/{{ this._id }}"><i class="far fa-file-pdf"></i></a></td>
+                    <td>{{ this.NOMBREFANTASIA }}</td>
+                    <td>{{ this.CUIT }}</td>
+                    <td>{{ this.DDNCOMERCIO }}{{ this.TELEFONOCOMERCIO }}</td>
+                    <td>{{ this.DDNCOMERCIO }}{{ this.CELULARCOMERCIO }}</td>
+                    <td>{{ this.EMAILCOMERCIO }}</td>
+                    <td>{{ this.DOMICILIOLEGAL }} {{ this.DOMICILIOLEGAL_NUM }} {{ this.DOMICILIOLEGAL_PISO }} {{ this.DOMICILIOLEGAL_L_O_D }} {{ this.DOMICILIOLEGAL_NUM_LETRA }}</p></td>
+                    <td>{{ this.LOCALIDADCOMERCIO }}</td>
+                    <td>{{ this.BANCO }}</td>
+                    <td>{{ this.NCUENTA }}</td>
+                    <td>{{ this.CBU }}</td>
+                    <td>{{ this.RUBRO }}</td>
+                    <td>{{ this.NIIBB }}</td>
+                    <td>{{ this.NOMBREFIRMANTE }} {{ this.APELLIDOFIRMANTE }}</td>
+                    <td>{{ this.DNIFIRMANTE }}</td>
+                    <td>{{ this.CUILFIRMANTE }}</td>
+                    <td>{{ this.TELEFONOFIRMANTE }}</td>
+                    <td>{{ this.EMAILFIRMANTE }}</td>
+                    <td>{{ this.NACIONALIDADFIRMANTE }}</td>
+                    <td>{{ this.SEXOFIRMANTE }}</td>
+                    <td>{{ this.DOMICILIOFIRMANTE }}</td>
+                </tr>
+                {{else}}
+                <h3>No hay clientes cargados. <a href="/fr/create">¡Cargá tu primer cliente!</a></h3>
+                {{/each}}
+            </tbody>
+        </table>
+
+</div>

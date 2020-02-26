@@ -1,0 +1,16 @@
+<div class="page-content pl-5 pr-5 pt-2" id="content">
+{{>toggMenu}}
+<form action="/fr/update/{{ fr._id }}" class="pt-3" method="post">
+        <form action="/fr/save" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <input type="text" class="form-control" placeholder="NOMBRE" value="{{fr.Nombre}}" name="Nombre">
+                </div>
+                <div class="form-group col-md-2">
+                    <input type="number" class="form-control" placeholder="DNI" value="{{fr.DNI}}" name="DNI">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</div>

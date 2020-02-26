@@ -1,0 +1,51 @@
+<div class="page-content pl-5 pr-5 pt-2" id="content">
+{{>toggMenu}}
+            <form action="/user/save" method="post">
+
+ <div class="form-row">
+    <div class="form-group col-md-6">
+      <input type="email" class="form-control" placeholder="EMAIL" name="EMAIL">
+    </div>
+    <div class="form-group col-md-6">
+      <input type="text" class="form-control" placeholder="CONTRASEÑA" name="CONTRASENA">
+    </div>
+  </div>
+   <div class="form-row">
+    <div class="form-group col-md-6">
+      <input type="text" class="form-control" placeholder="NOMBRE" name="NOMBRE">
+    </div>
+    <div class="form-group col-md-6">
+      <input type="number" class="form-control" placeholder="DNI" name="DNI">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+<input type="number" class="form-control" name="CUIT" placeholder="CUIT">
+    </div>
+    <div class="form-group col-md-4">
+      <select name="CARGO" class="form-control">
+        <option selected>Elegir...</option>
+        <option>Administrador</option>
+        <option>Gerente</option>
+        <option>Administrativo</option>
+        <option>Coordinador</option>
+        <option>Supervisor</option>
+        <option>Team Leader</option>
+        <option>Vendedor</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <input type="number" name="PRIVILEGIO" placeholder="PRIVILEGIO" min="1" max="7" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+        </div>

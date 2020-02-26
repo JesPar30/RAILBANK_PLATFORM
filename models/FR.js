@@ -1,0 +1,48 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+let FRSchema = new Schema({
+    RAZONSOCIAL: {type: String, max: 100},
+    NOMBREFANTASIA: {type: String, max: 100},
+    BANCO: {type: String, max: 100},
+    NSUCURSALBCO: {type: String, max: 100},
+    DOMICILIOLEGAL: {type: String, max: 100},
+    DOMICILIOLEGAL_NUM: {type: String, max: 100},
+    DOMICILIOLEGAL_PISO: {type: String, max: 100},
+    DOMICILIOLEGAL_L_O_D: {type: String, max: 100},
+    DOMICILIOLEGAL_NUM_LETRA: {type: String, max: 100},
+    CODPOSTAL: {type: String, max: 100},
+    CODGEOGRAFICO: {type: String, max: 100},
+    LOCALIDADCOMERCIO: {type: String, max: 100},
+    DDNCOMERCIO: {type: String, max: 100},
+    TELEFONOCOMERCIO: {type: String, max: 100},
+    CELULARCOMERCIO: {type: String, max: 100},
+    EMAILCOMERCIO: {type: String, max: 100},
+    NCUENTA: {type: String, max: 100},
+    CBU: {type: String, max: 100},
+    RUBRO: {type: String, max: 100},
+    NIIBB: {type: String, max: 100},
+    CUIT: {type: String, max: 100},
+    NOMBREFIRMANTE: {type: String, max: 100},
+    APELLIDOFIRMANTE: {type: String, max: 100},
+    FECHANACIMIENTO: {type: String, max: 100},
+    LUGARNACIMIENTO: {type: String, max: 100},
+    NACIONALIDADFIRMANTE: {type: String, max: 100},
+    SEXOFIRMANTE: {type: String, max: 100},
+    CUILFIRMANTE: {type: String, max: 100},
+    ESTADOCIVILFIRMANTE: {type: String, max: 100},
+    DOMICILIOFIRMANTE: {type: String, max: 100},
+    CPFIRMANTE: {type: String, max: 100},
+    TELEFONOFIRMANTE: {type: String, max: 100},
+    ACTPRINCIPALFIRMANTE: {type: String, max: 100},
+    EMAILFIRMANTE: {type: String, max: 100},
+    DNIFIRMANTE: {type: String, max: 100},
+    FECHACONTCONST: {type: String, max: 100},
+    FECHAINSCRIPREGIST: {type: String, max: 100},
+    NUMEROINSCRIPREGIST: {type: String, max: 100},
+    ACTPRINCIPALCOMERCIO: {type: String, max: 100},
+    SOCIOS: {type: String, max: 100},
+    fechaCreacion: { type: Date, default: Date.now }
+});
+
+module.exports = mongoose.model('FR', FRSchema);

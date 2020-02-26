@@ -1,0 +1,19 @@
+<div class="page-content pl-5 pr-5 pt-2" id="content">
+{{>toggMenu}}
+<div class="container d-flex justify-content-center">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title text-center">{{ fr.CUIT }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item text-center">{{ fr.NOMBREFIRMANTE }}</li>
+  </ul>
+  <div class="card-body d-flex justify-content-between">
+    <h3><a class="btn btn-dark" href="/fr/edit/{{ fr._id }}">EDITAR</a></h3>
+            <form action="/fr/delete/{{ fr._id }}" method="post">
+            <button class="btn btn-dark" type="submit">BORRAR</button>
+        </form>
+  </div>
+</div>
+</div>
+</div>

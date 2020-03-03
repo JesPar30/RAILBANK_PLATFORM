@@ -14,13 +14,13 @@ let UserSchema = new Schema({
     fechaCreacion: { type: Date, default: Date.now }
 });
 
+
 UserSchema.methods.encryptPassword = async CONTRASENA => {
     const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(CONTRASENA, salt);
+    return bcrypt.hashSync(CONTRASENA, salt);
   };
-  
-  UserSchema.methods.matchPassword = async (CONTRASENA) => {
-    return await bcrypt.compare(CONTRASENA, this.CONTRASENA);
-  };
+  UserSchema.methods.matchPassword = function (CONTRASENA) {
+    return bcrypt.compare(CONTRASENA, this.CONTRASENA);
+};
 
 module.exports = mongoose.model('USER', UserSchema);

@@ -4,8 +4,6 @@ const passport = require("passport");
 
 let userController = {};
 
-let privi;
-
 userController.list = function (req, res) {
 
     USER.find({}).exec(function (err, user) {
@@ -28,12 +26,12 @@ userController.show = function (req, res) {
 };
 
 userController.loginForm = function (req, res) {
-    res.render('../views/user/login');
+    res.render('../views/login');
 };
 
-userController.loginInit = passport.authenticate("login", {
+userController.loginInit = passport.authenticate('local', {
     successRedirect: "/inicio",
-    failureRedirect: "/user/login",
+    failureRedirect: "/login",
     failureFlash: true
   });
 
@@ -46,6 +44,7 @@ userController.create = function (req, res) {
 userController.save = async (req, res) => {
     let errors = [];
     const { NOMBRE, EMAIL, CONTRASENA, DNI, CUIT, CARGO, PRIVILEGIO } = req.body;
+
     if (CONTRASENA.length < 4) {
         errors.push({ text: "Passwords must be at least 4 characters." });
     }
@@ -69,6 +68,7 @@ userController.save = async (req, res) => {
         } else {
             // Saving a New User
             const newUser = new USER({ NOMBRE, EMAIL, CONTRASENA, DNI, CUIT, CARGO, PRIVILEGIO });
+            newUser.CONTRASENA = await newUser.encryptPassword(CONTRASENA);
             await newUser.save();
             req.flash("success_msg", "Usuario Registrado");
             res.redirect("/user/show/" + newUser._id);
@@ -135,6 +135,11 @@ userController.delete = function (req, res) {
     });
 
 };
+userController.logout = (req, res) => {
+    req.logout();
+    req.flash("success_msg", "You are logged out now.");
+    res.redirect("/");
+  };
 
 /*
  * Other actions

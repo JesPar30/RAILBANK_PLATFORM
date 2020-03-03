@@ -148,7 +148,7 @@ res.download(path.join(__dirname,'../PRI100 '+fr.Nombre+'.pdf'), function (err) 
 
 frController.list = function(req, res){
     
-    FR.find({}).exec(function(err, fr){
+    FR.find({USUARIO: req.user.id}).exec(function(err, fr){
         if( err ){ console.log('Error: ', err); return; }
         console.log("The INDEX");
         res.render('../views/fr/index', {fr: fr} );
@@ -175,7 +175,7 @@ frController.create = function(req, res){
 
 frController.save = function(req, res){
     var fr = new FR( req.body );
-    
+    fr.USUARIO = req.user.id;
     fr.save(function(err){
         if( err ){ console.log('Error: ', err); return; }
         

@@ -42,7 +42,8 @@ let FRSchema = new Schema({
     NUMEROINSCRIPREGIST: {type: String, max: 100},
     ACTPRINCIPALCOMERCIO: {type: String, max: 100},
     SOCIOS: {type: String, max: 100},
-    fechaCreacion: { type: Date, default: Date.now }
+    fechaCreacion: { type: Date, default: Date.now },
+    USUARIO: {type: String, required:true}
 });
 
 module.exports = mongoose.model('FR', FRSchema);

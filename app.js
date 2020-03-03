@@ -23,12 +23,30 @@ const frRouter = require('./routes/fr');
 const app = express();
 require('./config/passport');
 // view engine setup
-app.engine('.hbs', exphbs({
+
+const hbs = exphbs.create({
   defaultLayout: 'main',
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
-  extname: '.hbs'
-}));
+  extname: '.hbs',
+  helpers:{
+    vistaUsuarios: function(cargoUsuario, options) {
+      jerarquiaAdministrador = 'Administrador';
+      jerarquiaGerente = 'Gerente';
+      jerarquiaCoordinador = 'Coordinador';
+      jerarquiaSupervisor = 'Supervisor';
+      jerarquiaAdministrativo = 'Administrativo';
+      if (cargoUsuario == jerarquiaAdministrador||cargoUsuario == jerarquiaGerente
+        ||cargoUsuario == jerarquiaCoordinador||cargoUsuario == jerarquiaSupervisor
+        ||cargoUsuario == jerarquiaAdministrativo) {
+          return options.fn(this);
+      }
+      return options.inverse(this); 
+  }
+  }
+})
+
+app.engine('.hbs',hbs.engine);
 app.set('view engine', '.hbs');
 
 
@@ -47,6 +65,20 @@ app.use(flash());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//GLOBAL VARIABLES
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  console.log(req.user)
+  console.log(res.locals.user)
+  next();
+});
+
+
+
 //ROUTES
 
 app.use('/', indexRouter);
@@ -56,15 +88,6 @@ app.use('/fr', frRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
-});
-
-//GLOBAL VARIABLES
-app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
-  next();
 });
 
 // error handler

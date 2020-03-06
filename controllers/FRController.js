@@ -94,7 +94,7 @@ var geneAmex = function (u,a,pd) {
         acroField.set('AP', PDFDictionary.from({ N: appearanceStream }, pdfDoc.index));
       };
       
-      const existingPdfBytes = fs.readFileSync(__dirname+'/test.pdf')
+      const existingPdfBytes = fs.readFileSync(__dirname+'/PRI100.pdf')
 
       const pdfDoc = PDFDocumentFactory.load(existingPdfBytes);
       
@@ -104,8 +104,8 @@ var geneAmex = function (u,a,pd) {
       // Have to manually create this.
       // Field names can be found using `logAcroFieldNames(pdfDoc)`
       const fieldNames = {
-        name: 'name',
-        dni: 'dn_i',
+        razon: 'Razon_Social',
+        domicilio1: 'DomicilioLegal1',
       };
       
       
@@ -115,8 +115,8 @@ var geneAmex = function (u,a,pd) {
         fillAcroTextField(pdfDoc, field, FontHelvetica, text, fontSize);
       };
       
-      fillInField(fieldNames.name, u+ '');
-      fillInField(fieldNames.dni, a+ '');
+      fillInField(fieldNames.razon, u+ '');
+      fillInField(fieldNames.domicilio1, a+ '');
       
       
       
@@ -134,10 +134,10 @@ let frController = {};
 frController.genAmex = function (req,res) {
     FR.findById(req.params.id).exec(function (err, fr) {       
 
-geneAmex(fr.Nombre,fr.DNI,fr.Nombre)
+geneAmex(fr.RAZON,fr.DOMICILIOLEGAL,fr.RAZON)
 console.log(__dirname);
 
-res.download(path.join(__dirname,'../PRI100 '+fr.Nombre+'.pdf'), function (err) {
+res.download(path.join(__dirname,'../PRI100 '+fr.RAZON+'.pdf'), function (err) {
 
 });
 

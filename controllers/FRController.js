@@ -20,7 +20,7 @@ const {
   PDFString,
 } = require('pdf-lib');
 
-var geneAmex = function (u,a,pd) {
+var geneAmex = function (u,a,pd,ct1,ct2,ct3) {
     const getAcroFields = (pdfDoc) => {
         if (!pdfDoc.catalog.getMaybe('AcroForm')) return [];
         const acroForm = pdfDoc.index.lookup(pdfDoc.catalog.get('AcroForm'));
@@ -106,6 +106,9 @@ var geneAmex = function (u,a,pd) {
       const fieldNames = {
         razon: 'Razon_Social',
         domicilio1: 'DomicilioLegal1',
+        cuit1:'CUIT1',
+        cuit2:'CUIT2',
+        cuit3:'CUIT3',
       };
       
       
@@ -117,6 +120,9 @@ var geneAmex = function (u,a,pd) {
       
       fillInField(fieldNames.razon, u+ '');
       fillInField(fieldNames.domicilio1, a+ '');
+      fillInField(fieldNames.cuit1, ct1+ '');
+      fillInField(fieldNames.cuit2, ct2+ '');
+      fillInField(fieldNames.cuit3, ct3+ '');
       
       
       
@@ -134,10 +140,19 @@ let frController = {};
 frController.genAmex = function (req,res) {
     FR.findById(req.params.id).exec(function (err, fr) {       
 
-geneAmex(fr.RAZON,fr.DOMICILIOLEGAL,fr.RAZON)
+var cuiit1 =fr.CUIT.charAt(0)+fr.CUIT.charAt(1)
+var cuiit2 = fr.CUIT.charAt(2)+fr.CUIT.charAt(3)+fr.CUIT.charAt(4)+fr.CUIT.charAt(5)+fr.CUIT.charAt(6)+
+fr.CUIT.charAt(7)+fr.CUIT.charAt(8)+fr.CUIT.charAt(9)
+var cuiit3= fr.CUIT.charAt(10)
+
+
+
+
+
+geneAmex(fr.RAZONSOCIAL,fr.DOMICILIOLEGAL,fr.RAZONSOCIAL,cuiit1,cuiit2,cuiit3)
 console.log(__dirname);
 
-res.download(path.join(__dirname,'../PRI100 '+fr.RAZON+'.pdf'), function (err) {
+res.download(path.join(__dirname,'../PRI100 '+fr.RAZONSOCIAL+'.pdf'), function (err) {
 
 });
 
